@@ -1,0 +1,8 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block content %}
+        {% include "store/components/hero.html" %}
+        <section id="products-grid" class="products-grid album py-5">
+                {% include "store/components/products_grid.html" with title=category.name|default:"All products" products=products %}
+        </section>
+{% endblock content %}

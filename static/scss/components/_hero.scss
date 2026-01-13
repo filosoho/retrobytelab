@@ -1,0 +1,65 @@
+@use "../base/mixins" as mx;
+
+.hero {
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  & h1 {
+    font-size: 26px;
+
+    @include mx.breakpoint-up(xs) {
+      font-size: 36px;
+    }
+
+    @include mx.breakpoint-up(sm) {
+      font-size: 42px;
+    }
+  }
+  .headline {
+    font-size: 16px;
+
+    @include mx.breakpoint-up(xs) {
+      font-size: 20px;
+    }
+
+    @include mx.breakpoint-up(sm) {
+      font-size: 24px;
+    }
+  }
+
+  .lead {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-image: url("/static/media/images/hero.png");
+    background-size: cover;
+    background-position: 100% 5%;
+    transform: scaleX(-1);
+    z-index: -2;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+  }
+}
+
+.hero .container,
+.hero .row,
+.hero {
+  position: relative;
+  z-index: 1;
+}

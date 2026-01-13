@@ -1,0 +1,22 @@
+@use "../base/mixins" as mx;
+
+nav {
+  background-color: #426ac2;
+
+  .navbar-brand {
+    font-family: "Press Start 2P", system-ui;
+    font-size: 14px;
+  }
+
+  .nav-item {
+    .btn-outline-light {
+      border-color: #c7d7ff;
+    }
+
+    .btn:hover {
+      background-color: #1d4991;
+      border-color: #1d4991;
+      color: #99b4f4;
+    }
+  }
+}

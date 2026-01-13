@@ -1,0 +1,15 @@
+.shipping {
+  margin-inline: 16px;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .form-field.floating label {
+    color: #a1bdff;
+    margin-bottom: 8px;
+    pointer-events: none;
+  }
+}

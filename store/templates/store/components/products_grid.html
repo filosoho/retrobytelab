@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="products-grid__top">
+        <div class="h5">{{ title }}</div>
+        <div id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#"
+                       id="navbarDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">Categories</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item {% if not category %}active{% endif %}"
+                               href="{% url 'store' %}"
+                               hx-get="{% url 'store' %}"
+                               hx-target="#products-grid"
+                               hx-push-url="true">All</a>
+                        </li>
+                        {% for cat_item in all_categories %}
+                            <li>
+                                <a class="dropdown-item {% if category and category == cat_item %}active{% endif %}"
+                                   href="{{ cat_item.get_absolute_url }}"
+                                   hx-get="{{ cat_item.get_absolute_url }}"
+                                   hx-target="#products-grid"
+                                   hx-push-url="true">{{ cat_item.name|capfirst }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+        {% for product in products %}
+            {% include "store/components/product_card.html" %}
+        {% empty %}
+            <p>No products found.</p>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@use "../base/mixins" as mx;
+
+.track-orders {
+  &__content {
+    flex-direction: column;
+    font-weight: 500;
+    gap: 24px;
+    pointer-events: none;
+
+    @include mx.breakpoint-up(xs) {
+      flex-direction: row;
+    }
+
+    & img {
+      align-self: center;
+      width: 240px;
+
+      @include mx.breakpoint-up(xs) {
+        width: 160px;
+      }
+    }
+  }
+}

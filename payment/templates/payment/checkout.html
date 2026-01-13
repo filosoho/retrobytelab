@@ -1,0 +1,88 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block content %}
+    <section class="shipping d-flex flex-column flex-grow-1 justify-content-center align-items-center mt-5 mb-5">
+        <div class="headline__container text-center mb-4">
+            <h1 class="headline m-0">Complete your order</h1>
+        </div>
+        <div class="form headline__container">
+            <form id="form-checkout"
+                  method="post"
+                  autocomplete="off"
+                  onsubmit="event.preventDefault();">
+                {% csrf_token %}
+                <div class="form-field floating">
+                    <label for="name">Full name*</label>
+                    <input class="form-control validate"
+                           id="name"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.full_name }}"
+                           required>
+                </div>
+                <div class="form-field floating">
+                    <label for="email">Email address*</label>
+                    <input class="form-control validate"
+                           id="email"
+                           type="email"
+                           placeholder=" "
+                           value="{{ shipping.email }}"
+                           required>
+                </div>
+                <div class="form-field floating">
+                    <label for="address1">Address 1*</label>
+                    <input class="form-control validate"
+                           id="address1"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.address1 }}"
+                           required>
+                </div>
+                <div class="form-field floating">
+                    <label for="address2">Address 2*</label>
+                    <input class="form-control validate"
+                           id="address2"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.address2 }}"
+                           required>
+                </div>
+                <div class="form-field floating">
+                    <label for="city">City*</label>
+                    <input class="form-control validate"
+                           id="city"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.city }}"
+                           required>
+                </div>
+                <div class="form-field floating">
+                    <label for="state">State (optional)</label>
+                    <input class="form-control"
+                           id="state"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.state|default_if_none:'' }}">
+                </div>
+                <div class="form-field floating">
+                    <label for="zipcode">Zip code (optional)</label>
+                    <input class="form-control"
+                           id="zipcode"
+                           type="text"
+                           placeholder=" "
+                           value="{{ shipping.zipcode|default_if_none:'' }}">
+                </div>
+                <p id="paypal-hint" class="small danger d-none">*Please complete all required fields to continue</p>
+                <!-- PayPal button container -->
+                {% if cart_total and cart_total > 0 %}
+                    <div id="paypal-button-container"
+                         data-cart-total="{{ cart_total|floatformat:2 }}"></div>
+                    <p id="result-message"></p>
+                    <!-- Initialize the JS-SDK / PayPal client ID integration -->
+                    <script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}&currency=USD&components=buttons&intent=capture&enable-funding=venmo"
+                            data-sdk-integration-source="developer-studio"></script>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,28 @@
+.dashboard {
+  margin-inline: 16px;
+
+  .headline__container {
+    i {
+      font-size: 24px;
+      text-shadow:
+        0 0 0 #a1bdff,
+        0 0 0 #a1bdff;
+    }
+
+    .headline {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    gap: 24px;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  &__item {
+    border: 1px solid #a1bdff;
+    border-radius: 12px;
+    padding: 24px;
+  }
+}

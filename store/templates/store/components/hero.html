@@ -1,0 +1,13 @@
+<section class="hero py-4">
+    <div class="container py-lg-5 px-lg-4">
+        <div class="col-lg-6 col-md-8">
+            <h1>RetroByteLab</h1>
+            <p class="headline">Retro computing. Modern Engineering.</p>
+            {% include "store/components/c64_palette.html" %}
+            <br />
+            {% if not user.is_authenticated %}
+                <a href="{% url 'register' %}" class="btn btn-primary my-2">Sign up</a>
+            {% endif %}
+        </div>
+    </div>
+</section>

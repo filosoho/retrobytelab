@@ -1,0 +1,22 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div class="form headline__container">
+            <h1 class="headline">Delete your account</h1>
+            <hr />
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+                <p>Are you sure you want to delete your account?</p>
+                <div class="d-flex flex-column align-items-start">
+                    <button type="submit" class="btn btn-danger mt-3 align-self-end">Delete your account</button>
+                    <a class="btn btn-back mt-3" type="button" href="{% url 'profile' %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Go back
+                    </a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="d-flex flex-column flex-grow-1 justify-content-center align-items-center px-3">
+        <div class="headline__container text-center mt-5 mb-4">
+            <h1 class="headline">Create your account</h1>
+            <p class="m-0">Purchase your favourite items today!</p>
+        </div>
+        <div class="form headline__container mb-5">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+                {{ form.username|as_crispy_field }}
+                {{ form.email|as_crispy_field }}
+                {{ form.password1|as_crispy_field }}
+                {{ form.password2|as_crispy_field }}
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-secondary mt-3 w-100 btn-block">Create account</button>
+                    <p class="mt-2 mb-2">or</p>
+                    <a href="{% url 'login' %}">Already have an account</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

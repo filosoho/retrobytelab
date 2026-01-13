@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <body style="font-family: Arial, sans-serif;">
+        <div style="background-color: #072459;
+                    border: 6px solid #a1bdff;
+                    border-radius: 24px;
+                    color: #a1bdff;
+                    margin-inline: 28px;
+                    padding: 64px 32px;
+                    max-width: 600px;
+                    margin: auto">
+            <div style="display: flex;">
+                <div style="min-width: 30%"></div>
+                <div style="flex: 1;">
+                    <div style="font-size: 14px; padding: 0;">
+                        Hi {{ name }},
+                        <br />
+                        <br />
+                        Thank you for placing your order.
+                    </div>
+                    <br />
+                    <hr />
+                    <h3>Your order:</h3>
+                    <div style="flex: 1; min-width: 250px;">
+                        {% for item in order_items %}
+                            <div style="margin-bottom: 16px;">
+                                <img src="{{ item.image_url }}"
+                                     alt="{{ item.title }}"
+                                     width="120"
+                                     height=""
+                                     style="display:block;
+                                            margin-bottom:8px" />
+                                <strong>{{ item.title }}</strong>
+                                <br>
+                                Quantity: {{ item.quantity }}
+                                <br>
+                                Price: £{{ item.price }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr />
+                    <div style="font-size: 14px; text-align: right;">
+                        <strong>Total paid: £{{ total }}</strong>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div style="text-align: center;">
+                        <strong>👾 Thank you for shopping with us! 👾</strong>
+                    </div>
+                </div>
+                <div style="min-width: 30%"></div>
+            </div>
+        </div>
+    </body>
+</html>

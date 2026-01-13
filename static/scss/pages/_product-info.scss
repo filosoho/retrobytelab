@@ -1,0 +1,32 @@
+@use "../base/mixins" as mx;
+
+.product-info {
+  margin-inline: 24px;
+  width: unset;
+
+  @include mx.breakpoint-up(xs) {
+    margin-inline: auto;
+  }
+
+  &__image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      height: auto;
+    }
+  }
+
+  &__purchase {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .product-price {
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}

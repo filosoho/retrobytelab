@@ -1,0 +1,83 @@
+@use "../base/mixins" as mx;
+
+.products-grid {
+  color: white;
+  margin-inline: 16px;
+
+  .container {
+    @include mx.breakpoint-only(xxs) {
+      padding: 0;
+    }
+  }
+
+  .dropdown-toggle {
+    padding-inline: 6px;
+  }
+
+  .dropdown-toggle:focus-visible {
+    border-radius: 6px;
+    outline: 1px solid #c7d7ff;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+
+    .h5 {
+      margin-bottom: 0;
+      padding: 8px 0;
+    }
+
+    .dropdown-menu {
+      background-color: #426ac2;
+      border: 1px solid #a1bdff;
+      box-shadow: 2px 2px 4px 0px #08080899;
+    }
+
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+      background-color: #1d4991;
+    }
+
+    .dropdown-item.active {
+      background-color: #07255a;
+    }
+  }
+}
+
+.card {
+  background-color: #f6f4f4;
+  height: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+
+  a {
+    color: #525252;
+  }
+
+  &:last-child {
+    color: #303030;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.card-image-wrapper {
+  height: 142px;
+  padding: 8px;
+  width: 100%;
+}
+
+.img-fluid {
+  border-radius: 6px;
+  height: 142px;
+  object-fit: cover;
+}

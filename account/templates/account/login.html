@@ -1,0 +1,25 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="d-flex flex-column flex-grow-1 justify-content-center align-items-center px-3">
+        <div class="headline__container text-center mb-4">
+            <h1 class="headline m-0">Login</h1>
+        </div>
+        <div class="form headline__container">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+                {{ form.username|as_crispy_field }}
+                {{ form.password|as_crispy_field }}
+                {{ form.non_field_errors }}
+                <a class="mt-2 mb-4 d-flex w-100 justify-content-end"
+                   href="{% url 'reset_password' %}">Forgot password?</a>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-secondary mt-3 w-100 btn-block">Login</button>
+                    <p class="mt-2 mb-2">or</p>
+                    <a href="{% url 'register' %}">Create an account</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

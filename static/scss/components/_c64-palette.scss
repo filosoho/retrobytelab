@@ -1,0 +1,64 @@
+.c64-palette {
+  display: flex;
+  align-items: center;
+}
+
+.c64-palette .color {
+  width: 24px;
+  height: 24px;
+}
+
+.c64-palette .c64-icon {
+  width: 8px;
+  height: 8px;
+}
+
+/* Commodore 64 colors */
+.black {
+  background: #000000;
+}
+.white {
+  background: #ffffff;
+}
+.red {
+  background: #883932;
+}
+.cyan {
+  background: #67b6bd;
+}
+.purple {
+  background: #8b3f96;
+}
+.green {
+  background: #55a049;
+}
+.blue {
+  background: #40318d;
+}
+.yellow {
+  background: #bfce72;
+}
+.orange {
+  background: #8b5429;
+}
+.brown {
+  background: #574200;
+}
+.light-red {
+  background: #b86962;
+}
+.dark-grey {
+  background: #505050;
+}
+.grey {
+  background: #787878;
+}
+.light-green {
+  background: #94e089;
+}
+.light-blue {
+  background: #7869c4;
+}
+.light-grey {
+  background: #9f9f9f;
+}

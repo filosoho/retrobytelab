@@ -1,0 +1,5 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block content %}
+        {% include "store/components/products_grid.html" with title=category.name products=products %}
+{% endblock content %}

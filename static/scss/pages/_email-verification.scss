@@ -1,0 +1,14 @@
+.email {
+  &__text {
+    color: inherit;
+  }
+
+  &__container {
+    background-color: #a1bdff;
+    color: #072459;
+  }
+
+  .headline {
+    font-size: 24px;
+  }
+}

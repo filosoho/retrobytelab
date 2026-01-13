@@ -1,0 +1,116 @@
+@use "../base/mixins" as mx;
+
+.cart-summary {
+  margin-inline: auto;
+  max-width: 1440px;
+  width: 100%;
+
+  .btn {
+    border-radius: 12px;
+  }
+
+  .checkout-button {
+    width: 100%;
+  }
+
+  .update-button {
+    background-color: #1d4991;
+    border-color: #a1bdff;
+  }
+
+  .update-button:hover,
+  .update-button:active,
+  .update-button:focus {
+    background-color: #183e7c;
+    border-color: #90aced;
+  }
+
+  .update-button:focus-visible {
+    background-color: #163c7a;
+    border-color: #dae5ff;
+  }
+
+  .delete-button {
+    background-color: #983359;
+    border-color: #983359;
+  }
+
+  .delete-button:hover,
+  .delete-button:active,
+  .delete-button:focus {
+    background-color: #991b4b;
+    border-color: #991b4b;
+  }
+
+  .update-button,
+  .delete-button {
+    font-size: 14px;
+    padding: 6px 26px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 24px;
+
+    @include mx.breakpoint-up(lg) {
+      gap: 60px;
+    }
+  }
+
+  &__products {
+    flex: 3;
+    min-width: 0;
+  }
+
+  &__empty-products {
+    font-size: 24px;
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+
+    @include mx.breakpoint-up(xs) {
+      height: 142px;
+      max-width: 140px;
+      object-fit: contain;
+    }
+
+    @include mx.breakpoint-up(sm) {
+      max-width: 200px;
+    }
+  }
+
+  &__info {
+    flex: 2;
+    min-width: 0;
+  }
+
+  &__info-content {
+    background-color: #1d4991;
+    border: 1px solid #a1bdff;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  select {
+    height: 24px;
+  }
+
+  .fa-trash {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .fa-trash:focus-visible {
+    cursor: pointer;
+    font-size: 18px;
+    border: 1px solid white;
+  }
+}
+
+@media (max-width: 992px) {
+  .cart-summary__content {
+    flex-direction: column;
+  }
+}
