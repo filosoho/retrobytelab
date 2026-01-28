@@ -1,7 +1,9 @@
 black==26.1.0
 click==8.3.1
+cloudinary==1.44.1
 colorama==0.4.6
 cssbeautifier==1.15.4
+django-cloudinary-storage==0.3.0
 djlint==1.36.4
 EditorConfig==0.17.1
 jsbeautifier==1.15.4
