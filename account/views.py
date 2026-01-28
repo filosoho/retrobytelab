@@ -32,7 +32,7 @@ def register(request):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = user_tokenizer_generate.make_token(user)
 
-            verification_url = f"http://{current_site.domain}{reverse('email-verification', kwargs={'uidb64': uid, 'token': token})}"
+            verification_url = f"https://{current_site.domain}{reverse('email-verification', kwargs={'uidb64': uid, 'token': token})}"
 
             subject = "Account verification email."
             message = render_to_string(
