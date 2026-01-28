@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
+from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
@@ -7,30 +9,34 @@ class Category(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
 
     class Meta:
-        verbose_name_plural = 'categories'
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('category', args=[self.slug])
+        return reverse("category", args=[self.slug])
 
 
 class Product(models.Model):
     category = models.ForeignKey(
-        Category, related_name='product', on_delete=models.CASCADE, null=True)
+        Category, related_name="product", on_delete=models.CASCADE, null=True
+    )
     title = models.CharField(max_length=250)
-    brand = models.CharField(max_length=250, default='un-branded')
+    brand = models.CharField(max_length=250, default="un-branded")
     description = models.TextField(blank=True)
     slug = models.SlugField(max_length=250)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='images/')
+    if settings.DEBUG:
+        image = models.ImageField(upload_to="images/")
+    else:
+        image = CloudinaryField("image")
 
     class Meta:
-        verbose_name_plural = 'products'
+        verbose_name_plural = "products"
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('product-info', args=[self.slug])
+        return reverse("product-info", args=[self.slug])

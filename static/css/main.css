@@ -477,7 +477,7 @@ button,
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-image: url("/media/images/hero.png");
+  background-image: url("/static/images/hero.png");
   background-size: cover;
   background-position: 100% 5%;
   transform: scaleX(-1);

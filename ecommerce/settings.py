@@ -37,46 +37,34 @@ ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = [""]
 
 # Application definition
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "store",
+    "cart",
+    "account",
+    "payment",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "mathfilters",
+]
+
 if not DEBUG:
-    INSTALLED_APPS = [
-        "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sessions",
-        "django.contrib.messages",
+    INSTALLED_APPS += [
         "cloudinary_storage",
         "cloudinary",
-        "django.contrib.staticfiles",
-        "store",
-        "cart",
-        "account",
-        "payment",
-        "crispy_forms",
-        "crispy_bootstrap5",
-        "mathfilters",
-    ]
-else:
-    INSTALLED_APPS = [
-        "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sessions",
-        "django.contrib.messages",
-        "django.contrib.staticfiles",
-        "store",
-        "cart",
-        "account",
-        "payment",
-        "crispy_forms",
-        "crispy_bootstrap5",
-        "mathfilters",
     ]
 
 if not DEBUG:
     CLOUDINARY_STORAGE = {
-        "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
-        "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
-        "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+        "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+        "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+        "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+        "SECURE": True,
     }
 
     # Use Cloudinary for media files in prod
@@ -178,13 +166,24 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-if DEBUG:
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-else:
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+if DEBUG:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "static/media"
+
+if not DEBUG:
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+        "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+        "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+    }
+
+    # Use Cloudinary for media files in prod
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+else:  # Local development
+    # Serve media files locally
+    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-key
@@ -201,28 +200,3 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
-
-print("=" * 50)
-print(f"BASE_DIR: {BASE_DIR}")
-print(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
-print(f"STATIC_ROOT: {STATIC_ROOT}")
-print(f"static/ exists: {os.path.exists(BASE_DIR / 'static')}")
-if os.path.exists(BASE_DIR / "static"):
-    print(f"Contents of static/: {os.listdir(BASE_DIR / 'static')}")
-    # Check each subdirectory
-    for subdir in ["css", "js", "favicon_io", "scss"]:
-        path = BASE_DIR / "static" / subdir
-        if os.path.exists(path):
-            files = os.listdir(path)
-            print(f"Contents of static/{subdir}/: {files}")
-        else:
-            print(f"static/{subdir}/ does NOT exist")
-
-    # Check file sizes
-    css_file = BASE_DIR / "static/css/main.css"
-    js_file = BASE_DIR / "static/js/index.js"
-    print(f"main.css exists: {os.path.exists(css_file)}")
-    print(f"index.js exists: {os.path.exists(js_file)}")
-    if os.path.exists(css_file):
-        print(f"main.css size: {os.path.getsize(css_file)} bytes")
-print("=" * 50)
