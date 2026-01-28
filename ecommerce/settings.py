@@ -37,13 +37,21 @@ ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = [""]
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+]
+
+if not DEBUG:
+    INSTALLED_APPS += [
+        "cloudinary_storage",
+        "cloudinary",
+    ]
+
+INSTALLED_APPS += [
     "django.contrib.staticfiles",
     "store",
     "cart",
@@ -53,12 +61,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "mathfilters",
 ]
-
-if not DEBUG:
-    INSTALLED_APPS += [
-        "cloudinary_storage",
-        "cloudinary",
-    ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
