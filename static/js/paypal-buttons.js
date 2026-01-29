@@ -126,6 +126,8 @@ if (container) {
               window.location.replace("payment-success");
             },
             error: function (xhr, errmsg, err) {
+              console.log("error - failed payment ==> : ", err);
+              console.log("errmsg - failed payment ==> : ", errmsg);
               window.location.replace("payment-failed");
             },
           });
@@ -142,12 +144,13 @@ if (container) {
       onError: (err) => {
         console.error(
           "An error prevented the buyer from checking out with PayPal",
+          err,
         );
       },
     });
 
     paypalButtonsComponent.render("#paypal-button-container").catch((err) => {
-      console.error("PayPal Buttons failed to render");
+      console.error("PayPal Buttons failed to render", err);
     });
   }
 } else {
