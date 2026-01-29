@@ -32,9 +32,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENV != "production"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["retrobytelab.onrender.com", "*"]
 
-# CSRF_TRUSTED_ORIGINS = [""]
+CSRF_TRUSTED_ORIGINS = ["https://retrobytelab.onrender.com/"]
 
 # Application definition
 INSTALLED_APPS = [
@@ -197,6 +197,9 @@ EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
 
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_TIMEOUT = 10
+EMAIL_USE_LOCALTIME = True
+
 PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"

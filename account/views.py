@@ -43,7 +43,10 @@ def register(request):
                 },
             )
 
-            user.email_user(subject=subject, message=message)
+            try:
+                user.email_user(subject=subject, message=message)
+            except Exception as e:
+                print(f"Failed to send email: {e}")
 
             return redirect("email-verification-status", status="sent")
 
@@ -103,7 +106,10 @@ def login(request):
             username = request.POST.get("username")
             password = request.POST.get("password")
 
-            user = authenticate(request, username=username, password=password)
+            try:
+                user = authenticate(request, username=username, password=password)
+            except Exception as e:
+                print(f"Invalid user name: {e}")
 
             if user is not None:
                 auth.login(request, user)
