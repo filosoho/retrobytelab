@@ -26,7 +26,7 @@ The project covers the complete purchase flow: product listing, cart, checkout, 
 ## Tech Stack
 
 - **Backend:** Django, Python
-- **Database:** SQLite
+- **Database:** SQLite, Supabase
 - **Frontend:** Django Templates, Bootstrap, SCSS, Vanilla JavaScript, HTMX (AJAX-based partial page updates)
 - **Payments:** PayPal JavaScript SDK
 - **Emails:** Django EmailMultiAlternatives (HTML + text)

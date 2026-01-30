@@ -34,7 +34,8 @@ DEBUG = ENV != "production"
 
 ALLOWED_HOSTS = ["retrobytelab.onrender.com", "*"]
 
-CSRF_TRUSTED_ORIGINS = ["https://retrobytelab.onrender.com/"]
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = ["https://retrobytelab.onrender.com/"]
 
 # Application definition
 INSTALLED_APPS = [

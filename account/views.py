@@ -12,6 +12,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.conf import settings
 
 from cart.services import save_session_cart_to_db, load_user_cart_to_session
 
@@ -32,7 +33,10 @@ def register(request):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = user_tokenizer_generate.make_token(user)
 
-            verification_url = f"https://{current_site.domain}{reverse('email-verification', kwargs={'uidb64': uid, 'token': token})}"
+            if settings.DEBUG:
+                verification_url = f"http://{current_site.domain}{reverse('email-verification', kwargs={'uidb64': uid, 'token': token})}"
+            else:
+                verification_url = f"https://{current_site.domain}{reverse('email-verification', kwargs={'uidb64': uid, 'token': token})}"
 
             subject = "Account verification email."
             message = render_to_string(
